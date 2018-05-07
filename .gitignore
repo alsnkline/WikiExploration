@@ -1,3 +1,8 @@
+# from https://stackoverflow.com/questions/16869024/what-is-pycache
+# ignoring the __pycache__ folder also
+__pycache__
+*.pyc
+
 # from csvbot example - a JAVA app so more than I need
 *.DS_Store
 Thumbs.db
