@@ -1,0 +1,31 @@
+,Company_Name,Date_Added_To_DJIA,Exchange,Industry,Ticker_Symbol,Wiki_Link,Wiki_Page_Name
+0,3M,1976-08-09,NYSE,Conglomerate,MMM,/wiki/3M,3M
+1,American Express,1982-08-30,NYSE,Consumer finance,AXP,/wiki/American_Express,American_Express
+2,Apple,2015-03-19,NASDAQ,Consumer electronics,AAPL,/wiki/Apple_Inc.,Apple_Inc.
+3,Boeing,1987-03-12,NYSE,Aerospace and defense,BA,/wiki/Boeing,Boeing
+4,Caterpillar,1991-05-06,NYSE,Construction and mining equipment,CAT,/wiki/Caterpillar_Inc.,Caterpillar_Inc.
+5,Chevron,2008-02-19,NYSE,Oil & gas,CVX,/wiki/Chevron_Corporation,Chevron_Corporation
+6,Cisco Systems,2009-06-08,NASDAQ,Computer networking,CSCO,/wiki/Cisco_Systems,Cisco_Systems
+7,Coca-Cola,1987-03-12,NYSE,Beverages,KO,/wiki/The_Coca-Cola_Company,The_Coca-Cola_Company
+8,DowDuPont,2017-09-01,NYSE,Chemical industry,DWDP,/wiki/DowDuPont,DowDuPont
+9,ExxonMobil,1928-10-01,NYSE,Oil & gas,XOM,/wiki/ExxonMobil,ExxonMobil
+10,General Electric,1907-11-07,NYSE,Conglomerate,GE,/wiki/General_Electric,General_Electric
+11,Goldman Sachs,2013-09-20,NYSE,"Banking, Financial services",GS,/wiki/Goldman_Sachs,Goldman_Sachs
+12,The Home Depot,1999-11-01,NYSE,Home improvement retailer,HD,/wiki/The_Home_Depot,The_Home_Depot
+13,IBM,1979-06-29,NYSE,Computers and technology,IBM,/wiki/IBM,IBM
+14,Intel,1999-11-01,NASDAQ,Semiconductors,INTC,/wiki/Intel,Intel
+15,Johnson & Johnson,1997-03-17,NYSE,Pharmaceuticals,JNJ,/wiki/Johnson_%26_Johnson,Johnson_%26_Johnson
+16,JPMorgan Chase,1991-05-06,NYSE,Banking,JPM,/wiki/JPMorgan_Chase,JPMorgan_Chase
+17,McDonald's,1985-10-30,NYSE,Fast food,MCD,/wiki/McDonald%27s,McDonald%27s
+18,Merck,1979-06-29,NYSE,Pharmaceuticals,MRK,/wiki/Merck_%26_Co.,Merck_%26_Co.
+19,Microsoft,1999-11-01,NASDAQ,Software,MSFT,/wiki/Microsoft,Microsoft
+20,Nike,2013-09-20,NYSE,Apparel,NKE,"/wiki/Nike,_Inc.","Nike,_Inc."
+21,Pfizer,2004-04-08,NYSE,Pharmaceuticals,PFE,/wiki/Pfizer,Pfizer
+22,Procter & Gamble,1932-05-26,NYSE,Consumer goods,PG,/wiki/Procter_%26_Gamble,Procter_%26_Gamble
+23,Travelers,2009-06-08,NYSE,Insurance,TRV,/wiki/The_Travelers_Companies,The_Travelers_Companies
+24,UnitedHealth Group,2012-09-24,NYSE,Managed health care,UNH,/wiki/UnitedHealth_Group,UnitedHealth_Group
+25,United Technologies,1939-03-14,NYSE,Conglomerate,UTX,/wiki/United_Technologies_Corporation,United_Technologies_Corporation
+26,Verizon,2004-04-08,NYSE,Telecommunication,VZ,/wiki/Verizon_Communications,Verizon_Communications
+27,Visa,2013-09-20,NYSE,Consumer banking,V,/wiki/Visa_Inc.,Visa_Inc.
+28,Walmart,1997-03-17,NYSE,Retail,WMT,/wiki/Walmart,Walmart
+29,Walt Disney,1991-05-06,NYSE,Broadcasting and entertainment,DIS,/wiki/The_Walt_Disney_Company,The_Walt_Disney_Company
