@@ -33,6 +33,7 @@ def get_page_observations(title):
         print("Problem with " + title)
         return None
 
+
 def collect_obs_from_wikipedia(companies):
     # use the Wikipedia library - github shows its old, last updated in 2016
     # some pages don't load with wikipedia.page(title=title)
@@ -59,11 +60,13 @@ def collect_obs_from_wikipedia(companies):
     print(pages_df.describe())
     pages_df.to_csv(CSV_PAGE_DATA_FILENAME)
 
+
 def collect_obs_scraper(companies):
     djia_wiki_pages = []
     for company in companies:
         page = wiki_page_scraper.WikiPage(company)
         # have to do all the parsing
+
 
 def get_page_obs(title):
     # this also has the issue of some of the titles not being recognized.
