@@ -5,7 +5,8 @@ import requests as re
 
 URL_DBPEDIA_BASE = "http://dbpedia.org/data/"
 PATH_DBPEDIA_RESOURCE = "http://dbpedia.org/resource/"
-URL_DBPEDIA_ONTOLOGY_ABSTRACT = "http://dbpedia.org/ontology/abstract"
+URL_DBPEDIA_ONTOLOGY_BASE= "http://dbpedia.org/ontology/"
+
 
 
 class DBPediaEntry:
@@ -15,21 +16,55 @@ class DBPediaEntry:
         self.name = name
         self.url = URL_DBPEDIA_BASE + name
         self.full_json = re.get(self.url +'.json').json()
-        print("first time /n" + str(self.full_json.keys()))
-        self.abstract = self.get_abstract(self.full_json)
+        print("Full json keys /n" + str(self.full_json.keys()))
+        self.name_json = self.full_json[PATH_DBPEDIA_RESOURCE + self.name]
+        print("Name json keys /n" + str(self.name_json.keys()))
+        self.en_abstract = self.get_abstract(self.name_json)
+        self.type = self.get_node(self.name_json, 'type')
+        self.wiki_page_id = self.get_node(self.name_json, 'wikiPageID')
+        self.industry = self.get_node(self.name_json, 'industry')
+        self.founded_by = self.get_node(self.name_json, 'foundedBy')
+        self.foundation_place = self.get_node(self.name_json, 'foundationPlace')
+        self.no_employees = self.get_node(self.name_json, 'numberOfEmployees')
+
 
     def get_abstract(self, data):
-        abstract = data[PATH_DBPEDIA_RESOURCE + self.name][URL_DBPEDIA_ONTOLOGY_ABSTRACT]
-        for i in abstract:
-            print(i['value'])
+        node = data[URL_DBPEDIA_ONTOLOGY_BASE + 'abstract']
+        res = ""
+        for i in node:
+            #print("Has abstract in : " + i['lang'])
             if (i['lang'] == "en"):
-                print(i['value'])
+                res = i['value']
+                print('En abstract = ', res)
+        return res if res else None
+
+
+    def get_node(self, data, node_name):
+        node = data[URL_DBPEDIA_ONTOLOGY_BASE + node_name]
+        print(node)
+        res = []
+        if isinstance(node, (list)):
+            for i in node:
+                print(node_name + ' = ', res)
+
+        # returning the right thing
+        if len(res) < 1:
+            print(node_name + ' = ', 'not found')
+            return None
+        elif len(res) < 2:
+            print(node_name + ' = ', res[0])
+            return res[0]
+        else:
+            print(node_name + ' = ', res)
+            return res
+
 
 def main(options):
-    db_entry = DBPediaEntry(options.pn)
     print("Retrived data for " + options.pn)
+    db_entry = DBPediaEntry(options.pn)
     print(len(db_entry.full_json.keys()))
-    print("second time \n" + json.dumps(db_entry.full_json, indent=4, sort_keys=True))
+    print (db_entry)
+    #print("second time \n" + json.dumps(db_entry.full_json, indent=4, sort_keys=True))
 
 
 if __name__ == '__main__':
