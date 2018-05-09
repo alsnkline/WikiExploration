@@ -8,7 +8,6 @@ class WikipediaDjiaCompanies():
         gathering elements of data for them
         creating a pandas dataframe that can be saved to csv or used directly"""
 
-
     def __init__(self):
         self.df = self.get_df()
 
@@ -59,7 +58,5 @@ class WikipediaDjiaCompanies():
 def main():
     companies = WikipediaDjiaCompanies()
 
-
 if __name__ == '__main__':
-
     main()
