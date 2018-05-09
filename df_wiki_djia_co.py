@@ -3,7 +3,7 @@ import os
 from bs4 import BeautifulSoup
 import pandas as pd
 
-class WikipediaDjiaCompanies():
+class WikipediaDjiaCompanies(object):
     """An class that uses the wikipedia page to create a list of Dow Jones Industrial Average companies
         gathering elements of data for them
         creating a pandas dataframe that can be saved to csv or used directly"""

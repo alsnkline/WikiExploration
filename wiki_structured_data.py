@@ -9,7 +9,7 @@ PATH_DBPEDIA_RESOURCE = "http://dbpedia.org/resource/"
 
 
 
-class DBPediaEntry:
+class DBPediaEntry(object):
     """A particular DBPedia's Entry"""
 
     def __init__(self, name):
