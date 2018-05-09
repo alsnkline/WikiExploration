@@ -3,7 +3,7 @@ import mediawiki
 import pandas as pd
 import os.path
 import wiki_page_scraper
-import wikipedia_djia_companies
+import df_wiki_djia_co
 from bs4 import BeautifulSoup
 
 CSV_PAGE_DATA_FILENAME = 'dj_ia_companies.csv'
@@ -114,7 +114,7 @@ def collect_obs_pymediawiki(companies):
 
 
 def main(options):
-    djia_comps = wikipedia_djia_companies.WikipediaDjiaCompanies()
+    djia_comps = df_wiki_djia_co.WikipediaDjiaCompanies()
     #collect_obs_from_wikipedia(djia_comps.df['Wiki_Page_Name'])
     #collect_obs_scraper(djia_df['Wiki_Link'])
     collect_obs_pymediawiki(djia_comps.df['Wiki_Page_Name'])
