@@ -1,25 +1,35 @@
 # exploring what we get from DBPedia
 # http://skipperkongen.dk/2016/08/18/how-to-get-structured-wikipedia-data-via-dbpedia/
-import argparse
 import json
 import requests as re
 
-DBPEDIA_BASE_URL = 'http://dbpedia.org/data/'
-DBPEDIA_ONTOLOGY = 'http://dbpedia.org/ontology/abstract'
+URL_DBPEDIA_BASE = "http://dbpedia.org/data/"
+PATH_DBPEDIA_RESOURCE = "http://dbpedia.org/resource/"
+URL_DBPEDIA_ONTOLOGY_ABSTRACT = "http://dbpedia.org/ontology/abstract"
+
+
+class DBPediaEntry:
+    """A particular DBPedia's Entry"""
+
+    def __init__(self, name):
+        self.name = name
+        self.url = URL_DBPEDIA_BASE + name
+        self.full_json = re.get(self.url +'.json').json()
+        print("first time /n" + str(self.full_json.keys()))
+        self.abstract = self.get_abstract(self.full_json)
+
+    def get_abstract(self, data):
+        abstract = data[PATH_DBPEDIA_RESOURCE + self.name][URL_DBPEDIA_ONTOLOGY_ABSTRACT]
+        for i in abstract:
+            print(i['value'])
+            if (i['lang'] == "en"):
+                print(i['value'])
 
 def main(options):
-    raw_data = re.get(DBPEDIA_BASE_URL + options.pn + '.json').json()
+    db_entry = DBPediaEntry(options.pn)
     print("Retrived data for " + options.pn)
-    print(len(raw_data.keys()))
-    print(json.dumps(raw_data, indent=4, sort_keys=True))
-
-    #abstract = raw_data['http://dbpedia.org/resource/Caterpillar_Inc.']['http://dbpedia.org/ontology/abstract']
-    abstract = raw_data['http://dbpedia.org/resource/'+ options.pn]['http://dbpedia.org/ontology/abstract']
-    for i in abstract:
-        if (i['lang'] == "en"):
-            print(i['value'])
-
-    #print(json.dumps(ddata, indent=4, sort_keys=True))
+    print(len(db_entry.full_json.keys()))
+    print("second time \n" + json.dumps(db_entry.full_json, indent=4, sort_keys=True))
 
 
 if __name__ == '__main__':
