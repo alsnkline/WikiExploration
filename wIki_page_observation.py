@@ -3,6 +3,7 @@ import mediawiki
 import pandas as pd
 import os.path
 import wiki_page_scraper
+import wikipedia_djia_companies
 from bs4 import BeautifulSoup
 
 CSV_PAGE_DATA_FILENAME = 'dj_ia_companies.csv'
@@ -112,53 +113,11 @@ def collect_obs_pymediawiki(companies):
     pages_df.to_csv(CSV_PAGE_DATA_FILENAME)
 
 
-def get_Dow_Jones_Industrial_Average_DF():
-    """Using the Dow Jones Industrial Average Wikipeadia page to get list of DJIA companies and some data for them"""
-    CSV_DJIA_FILENAME = 'dow_jones_ia_companies.csv'
-
-    if os.path.exists(CSV_DJIA_FILENAME):
-        # use local data copy
-        print("Found " + CSV_DJIA_FILENAME + " locally ---- LOADING")
-        data = pd.read_csv(CSV_DJIA_FILENAME, index_col=0)
-        djia_df = pd.DataFrame(data)
-        print(djia_df.head())
-        return djia_df
-
-    else:
-        # get data from wikipedia
-        print("No data locally ---- PARSING from Wikipedia")
-        djia_companies = []
-        page = wikipedia.page(title="Dow_Jones_Industrial_Average")
-        html_soup = BeautifulSoup(page.html(), 'html.parser')
-        components_table = html_soup.find('table', class_='wikitable sortable')
-
-        for r in [row for row in components_table.contents if row.name == 'tr']:
-            #print(r.prettify)
-            cells = [td for td in r.contents if td.name == 'td']
-            if cells:               # first row has only 'th' and doesn't need to be parsed
-                djia_entry = {
-                    "Company_Name": cells[0].text.rstrip('\n'),
-                    "Wiki_Link": cells[0].find('a')['href'],
-                    "Wiki_Page_Name": cells[0].find('a')['href'].replace('/wiki/', ''),
-                    "Exchange": cells[1].text.rstrip('\n'),
-                    "Ticker_Symbol": cells[2].text.rstrip('\n'),
-                    "Industry": cells[3].text.rstrip('\n'),
-                    "Date_Added_To_DJIA": cells[4].text.rstrip('\n')
-                }
-                djia_companies.append(djia_entry)
-
-        djia_df = pd.DataFrame(djia_companies)
-        djia_df.to_csv(CSV_DJIA_FILENAME)       # save the data locally for efficiency
-
-        print(djia_df.head())
-        return djia_df
-
-
 def main(options):
-    djia_df = get_Dow_Jones_Industrial_Average_DF()
-    #collect_obs_from_wikipedia(djia_df['Wiki_Page_Name'])
+    djia_comps = wikipedia_djia_companies.WikipediaDjiaCompanies()
+    #collect_obs_from_wikipedia(djia_comps.df['Wiki_Page_Name'])
     #collect_obs_scraper(djia_df['Wiki_Link'])
-    collect_obs_pymediawiki(djia_df['Wiki_Page_Name'])
+    collect_obs_pymediawiki(djia_comps.df['Wiki_Page_Name'])
 
 
 if __name__ == '__main__':

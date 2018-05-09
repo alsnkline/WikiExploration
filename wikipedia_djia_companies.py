@@ -20,13 +20,13 @@ class WikipediaDjiaCompanies():
         if os.path.exists(CSV_DJIA_FILENAME):
             # use local data copy
             print("Found " + CSV_DJIA_FILENAME + " locally ---- LOADING")
-            self.company_data = pd.read_csv(CSV_DJIA_FILENAME, index_col=0)
+            djia_df = pd.read_csv(CSV_DJIA_FILENAME, index_col=0)
         else:
             # get data from wikipedia
-            self.company_data = self.get_company_data()
+            company_data = self.get_company_data()
+            djia_df = pd.DataFrame(company_data)
+            djia_df.to_csv(CSV_DJIA_FILENAME)
 
-        djia_df = pd.DataFrame(self.company_data)
-        djia_df.to_csv(CSV_DJIA_FILENAME)
         print(djia_df.head())
         return djia_df
 
