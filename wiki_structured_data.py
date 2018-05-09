@@ -4,8 +4,8 @@ import json
 import requests as re
 
 URL_DBPEDIA_BASE = "http://dbpedia.org/data/"
-PATH_DBPEDIA_RESOURCE = "http://dbpedia.org/resource/"
 URL_DBPEDIA_ONTOLOGY_BASE= "http://dbpedia.org/ontology/"
+PATH_DBPEDIA_RESOURCE = "http://dbpedia.org/resource/"
 
 
 
@@ -29,9 +29,9 @@ class DBPediaEntry:
 
 
     def get_abstract(self, data):
-        node = data[URL_DBPEDIA_ONTOLOGY_BASE + 'abstract']
+        abstract = data[URL_DBPEDIA_ONTOLOGY_BASE + 'abstract']
         res = ""
-        for i in node:
+        for i in abstract:
             #print("Has abstract in : " + i['lang'])
             if (i['lang'] == "en"):
                 res = i['value']
@@ -41,11 +41,11 @@ class DBPediaEntry:
 
     def get_node(self, data, node_name):
         node = data[URL_DBPEDIA_ONTOLOGY_BASE + node_name]
-        print(node)
+        #print(node)
         res = []
         if isinstance(node, (list)):
             for i in node:
-                print(node_name + ' = ', res)
+                res.append(i['value'])
 
         # returning the right thing
         if len(res) < 1:
