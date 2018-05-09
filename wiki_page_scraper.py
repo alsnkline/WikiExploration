@@ -9,7 +9,6 @@ class WikiPage:
     """A particular Wikipedia page and its data"""
     EN_WIKI_URL = "https://en.wikipedia.org/wiki/"      # base URL for English wikipedia
 
-
     def __init__(self, name):
         self.name = name      # Wiki page name, last part of wiki URL, also often the displayed title
         if ('/wiki/' in name):

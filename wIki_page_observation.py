@@ -1,7 +1,6 @@
 import wikipedia
 import mediawiki
 import pandas as pd
-import os.path
 import wiki_page_scraper
 import df_wiki_djia_co
 from bs4 import BeautifulSoup
