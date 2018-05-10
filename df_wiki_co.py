@@ -22,6 +22,9 @@ class WikipediaCompanyInfo(object):
             comp_data = []
             for co in list:
                 co_data = vars(wiki_structured_data.DBPediaEntry(co))
+                if co_data['wiki_page_redirects']:
+                    if type(co_data['wiki_page_redirects']) == str:     # only if one redirect was returned
+                        co_data = vars(wiki_structured_data.DBPediaEntry(os.path.basename(co_data['wiki_page_redirects'])))
                 del co_data["full_json"]
                 del co_data["name_json"]
                 print(co_data)
@@ -33,10 +36,13 @@ class WikipediaCompanyInfo(object):
         return data_df
 
 
-def main():
-    companies = df_wiki_djia_co.WikipediaDjiaCompanies()
-    df = WikipediaCompanyInfo(companies.df['Wiki_Page_Name'])
-    print('stop')
+def main(list):
+    if not list:
+        djia_cos = df_wiki_djia_co.WikipediaDjiaCompanies()
+        list = djia_cos.df['Wiki_Page_Name']
+    df = WikipediaCompanyInfo(list).df
+    print(df.head())
 
 if __name__ == '__main__':
-    main()
+    pages_with_redirects = ['DowDuPont', 'United_Technologies_Corporation']
+    main(None)
